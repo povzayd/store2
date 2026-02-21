@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <link rel="icon" href="./logo.png" type="image/x-icon">
+    <title>Our Journey | Satyam Ayurvedics</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { terracotta: '#B36A5E', sand: '#E2D1B3', brandDark: '#2D2926' },
+                    fontFamily: { sans: ['Manrope', 'sans-serif'], heading: ['Montserrat', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #E2D1B3; color: #2D2926; scroll-behavior: smooth; overflow-x: hidden; }
+        .glass { background: rgba(255, 255, 255, 0.25); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(179, 106, 94, 0.1); }
+        
+        .organic-frame { 
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; 
+            transition: all 1s cubic-bezier(0.22, 1, 0.36, 1); 
+            overflow: hidden;
+            border: 1px solid rgba(179, 106, 94, 0.2);
+        }
+        .organic-frame:hover { 
+            border-radius: 20px; 
+            transform: scale(1.02); 
+            border-color: #B36A5E;
+        }
+
+        #mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        #mobile-menu.active { transform: translateX(0); }
+
+        .journey-container { position: relative; min-height: 100vh; }
+
+        /* Desktop Curly Path */
+        .svg-desktop {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+            width: 400px;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        #shimmerPath {
+            stroke-linecap: round;
+            transition: stroke-dashoffset 0.2s ease-out;
+        }
+
+        /* Mobile Straight Path */
+        .mobile-line-container {
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: rgba(179, 106, 94, 0.1);
+            z-index: 0;
+        }
+        .mobile-line-progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0%;
+            background: #B36A5E;
+            box-shadow: 0 0 15px #B36A5E;
+            transition: height 0.2s ease-out;
+        }
+
+        @media (min-width: 768px) { .mobile-line-container { display: none; } }
+        @media (max-width: 767px) { .svg-desktop { display: none; } }
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+<nav class="fixed top-0 w-full z-50 glass">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+        <a href="./index.html"><img src="logo.png" alt="Logo" class="h-12 w-auto object-contain hover:scale-110 transition-transform duration-300"/></a>
+        <div class="hidden md:flex items-center space-x-10">
+            <a href="./gallery.html" class="hover:text-terracotta transition-colors font-medium">Gallery</a>
+            <a href="./journey.html" class="text-terracotta font-bold">Our Journey</a>
+            <a href="./about-us.html" class="hover:text-terracotta transition-colors font-medium">About Us</a>
+            <a href="./contact.html" class="bg-terracotta text-white px-6 py-2.5 rounded-full font-semibold hover:shadow-lg transition-all">Contact Us</a>
+        </div>
+        <button id="menu-btn" class="md:hidden text-terracotta p-2">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+    </div>
+</nav>
+
+<div id="mobile-menu" class="fixed inset-0 z-[60] bg-brandDark flex flex-col items-center justify-center space-y-8 md:hidden">
+    <button id="close-btn" class="absolute top-6 right-6 text-sand p-2">
+        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+    </button>
+    <a href="./gallery.html" class="text-3xl text-sand font-heading">Gallery</a>
+    <a href="./journey.html" class="text-3xl text-terracotta font-heading font-bold">Our Journey</a>
+    <a href="./about-us.html" class="text-3xl text-sand font-heading">About Us</a>
+    <a href="./contact.html" class="text-3xl text-sand font-heading">Contact Us</a>
+</div>
+
+<header class="pt-44 pb-20 px-6 text-center">
+    <span class="text-terracotta font-bold tracking-[0.4em] uppercase text-[10px] mb-4 block">The Satyam Evolution</span>
+    <h1 class="font-heading text-5xl md:text-7xl font-extrabold text-brandDark mb-6">The Path of <span class="text-terracotta italic">Purity</span></h1>
+</header>
+
+<main class="journey-container py-20">
+    <svg class="svg-desktop" viewBox="0 0 400 1000" preserveAspectRatio="none">
+        <path d="M200,0 C350,150 50,350 200,500 C350,650 50,850 200,1000" fill="none" stroke="rgba(179,106,94,0.1)" stroke-width="2" />
+        <path id="shimmerPath" d="M200,0 C350,150 50,350 200,500 C350,650 50,850 200,1000" fill="none" stroke="#B36A5E" stroke-width="3" style="filter: drop-shadow(0 0 8px #B36A5E);" />
+    </svg>
+
+    <div class="mobile-line-container">
+        <div id="mobileProgress" class="mobile-line-progress"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 relative">
+        <div class="flex flex-col md:flex-row items-center justify-between mb-48 gap-12 timeline-item">
+            <div class="md:w-[45%] order-2 md:order-1 ml-12 md:ml-0">
+                <div class="organic-frame aspect-square group shadow-xl">
+                    <img src="./gallery/17.jpg" alt="Sourcing" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000"/>
+                </div>
+            </div>
+            <div class="md:w-[45%] order-1 md:order-2 ml-12 md:ml-0">
+                <span class="text-terracotta font-bold text-xs tracking-widest uppercase">Phase 01</span>
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-brandDark mt-2 mb-6">Ethical Sourcing</h2>
+                <p class="text-stone-600">Harvested from certified organic farms at peak potency.</p>
+            </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row items-center justify-between mb-48 gap-12 timeline-item">
+            <div class="md:w-[45%] md:text-right order-1 ml-12 md:ml-0">
+                <span class="text-terracotta font-bold text-xs tracking-widest uppercase">Phase 02</span>
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-brandDark mt-2 mb-6">Standardized Testing</h2>
+                <p class="text-stone-600">Dual-verification for purity and active alkaloid levels.</p>
+            </div>
+            <div class="md:w-[45%] order-2 ml-12 md:ml-0">
+                <div class="organic-frame aspect-square group shadow-xl">
+                    <img src="./gallery/16.jpg" alt="Lab" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row items-center justify-between mb-32 gap-12 timeline-item">
+            <div class="md:w-[45%] order-2 md:order-1 ml-12 md:ml-0">
+                <div class="organic-frame aspect-square group shadow-xl">
+                    <img src="./gallery/13.jpg" alt="Extraction" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000"/>
+                </div>
+            </div>
+            <div class="md:w-[45%] order-1 md:order-2 ml-12 md:ml-0">
+                <span class="text-terracotta font-bold text-xs tracking-widest uppercase">Phase 03</span>
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-brandDark mt-2 mb-6">Ayurvedic Decanting</h2>
+                <p class="text-stone-600">Steam-distillation preserving the plant's medicinal structure.</p>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer id="contact" class="bg-brandDark pt-20 pb-10 text-sand overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+            
+            <div class="footer-reveal space-y-6">
+                <a href="./index.html" class="inline-block">
+                    <img src="logo.png" alt="Satyam Logo" class="h-16 w-auto brightness-0 invert opacity-80 hover:opacity-100 transition-opacity"/>
+                </a>
+                <p class="text-sm leading-relaxed opacity-60">
+                    Bridging the sacred traditions of Ayurveda with the precision of modern science. Sourced from the Himalayas, perfected in our labs.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#" class="p-2 rounded-full border border-sand/10 hover:border-terracotta hover:text-terracotta transition-all">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.947.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-reveal space-y-6">
+                <h4 class="font-heading font-bold text-sm uppercase tracking-widest text-terracotta">Navigation</h4>
+                <ul class="space-y-4 text-sm opacity-60">
+                    <li><a href="#process" class="hover:text-sand hover:opacity-100 transition-all">Our Process</a></li>
+                    <li><a href="#ingredients" class="hover:text-sand hover:opacity-100 transition-all">Key Ingredients</a></li>
+                    <li><a href="#gallery" class="hover:text-sand hover:opacity-100 transition-all">Visual Gallery</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-reveal space-y-6">
+                <h4 class="font-heading font-bold text-sm uppercase tracking-widest text-terracotta">Location</h4>
+                <ul class="space-y-4 text-sm opacity-60">
+                    <li class="flex items-start gap-3">
+                        <svg class="w-5 h-5 text-terracotta mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke-width="2"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke-width="2"/></svg>
+                        <span>123 Spiritual Lane,<br/>Rishikesh, Uttarakhand, 249201</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <svg class="w-5 h-5 text-terracotta" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-width="2"/></svg>
+                        hello@satyam.com
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer-reveal space-y-4" style="opacity: 1; transform: translateY(0px); transition: 0.8s cubic-bezier(0.22, 1, 0.36, 1);">
+    <h4 class="font-heading font-bold text-sm uppercase tracking-widest text-terracotta">Find Us</h4>
+
+    <div class="w-full h-64 rounded-2xl overflow-hidden grayscale invert opacity-80 hover:grayscale-0 hover:invert-0 hover:opacity-100 transition-all duration-700 shadow-lg border border-white/5">
+        
+        <iframe
+            src="https://maps.google.com/maps?width=350&amp;height=313&amp;hl=en&amp;q=Satyam ayurvedics, Kachoura, Uttar Pradesh 204211&amp;t=h&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+            class="w-full h-full border-0"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+
+    </div>
+</div>
+        </div>
+<!-- 
+
+<div class="mapouter"><div class="gmap_canvas"><iframe class="gmap_iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=Satyam ayurvedics, Kachoura, Uttar Pradesh 204211&amp;t=k&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a href="https://embed-googlemap.com">google map embed html</a></div><style>.mapouter{position:relative;text-align:right;width:600px;height:400px;}.gmap_canvas {overflow:hidden;background:none!important;width:600px;height:400px;}.gmap_iframe {width:600px!important;height:400px!important;}</style></div>
+
+
+
+
+
+ -->
+        <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] uppercase tracking-widest opacity-40">
+            <p>© 2026 Satyam Ayurvedics. All rights reserved.</p>
+            <div class="flex gap-6">
+                <button id="privacy-trigger" class="hover:text-sand transition-colors cursor-pointer">Privacy Policy</button>
+                <button id="license-trigger" class="hover:text-sand transition-colors cursor-pointer">License</button>
+            </div>
+        </div>
+    </div>
+</footer>
+<script>
+    /* Footer Scroll Animation Logic */
+    const footerObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Trigger reveal for each child column with a delay
+                const columns = entry.target.querySelectorAll('.footer-reveal');
+                columns.forEach((col, index) => {
+                    setTimeout(() => {
+                        col.style.opacity = '1';
+                        col.style.transform = 'translateY(0)';
+                    }, index * 150); // 150ms stagger
+                });
+            }
+        });
+    }, { threshold: 0.1 });
+
+    const footer = document.querySelector('footer');
+    // Initial state for columns
+    document.querySelectorAll('.footer-reveal').forEach(col => {
+        col.style.opacity = '0';
+        col.style.transform = 'translateY(20px)';
+        col.style.transition = 'all 0.8s cubic-bezier(0.22, 1, 0.36, 1)';
+    });
+    footerObserver.observe(footer);
+</script>
+
+<script>
+    // Navigation
+    const menuBtn = document.getElementById('menu-btn');
+    const closeBtn = document.getElementById('close-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuBtn.onclick = () => mobileMenu.classList.add('active');
+    closeBtn.onclick = () => mobileMenu.classList.remove('active');
+
+    // Section-Relative Scroll Logic
+    function updateScrollProgress() {
+        const journeyContainer = document.querySelector('.journey-container');
+        const path = document.getElementById('shimmerPath');
+        const mobileLine = document.getElementById('mobileProgress');
+        
+        const rect = journeyContainer.getBoundingClientRect();
+        const viewHeight = window.innerHeight;
+
+        // Calculate progress based on container visibility
+        let progress = (viewHeight - rect.top) / (rect.height + viewHeight);
+        progress = Math.max(0, Math.min(1, progress));
+
+        // Desktop Path Update
+        if (path) {
+            const length = path.getTotalLength();
+            path.style.strokeDasharray = length;
+            path.style.strokeDashoffset = length - (progress * length);
+        }
+
+        // Mobile Line Update
+        if (mobileLine) {
+            mobileLine.style.height = (progress * 100) + "%";
+        }
+    }
+
+    window.addEventListener('scroll', updateScrollProgress);
+    window.addEventListener('resize', updateScrollProgress);
+    updateScrollProgress(); // Initial call
+
+    // Reveal Items
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.timeline-item').forEach(item => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(30px)';
+        item.style.transition = 'all 1s ease-out';
+        revealObserver.observe(item);
+    });
+</script>
+</body>
+<div id="privacy-modal" class="fixed inset-0 z-[100] hidden items-center justify-center px-6">
+    <div class="absolute inset-0 bg-brandDark/90 backdrop-blur-md" id="modal-overlay"></div>
+    
+    <div class="relative bg-sand w-full max-w-2xl max-h-[80vh] rounded-[40px] shadow-2xl overflow-hidden flex flex-col">
+        <div class="p-8 border-b border-terracotta/10 flex justify-between items-center bg-white/50">
+            <h3 class="font-heading font-bold text-2xl text-brandDark">Privacy Policy</h3>
+            <button id="close-modal" class="text-terracotta hover:rotate-90 transition-transform duration-300">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+        
+        <div class="p-8 overflow-y-auto text-brandDark/80 text-sm leading-relaxed space-y-6">
+            <section>
+                <h4 class="font-bold text-brandDark uppercase tracking-wider mb-2 text-xs">1. Information Collection</h4>
+                <p>We collect information you provide directly to us, such as when you sign up for our newsletter, make a purchase, or contact us. This may include your name, email address, and billing information.</p>
+            </section>
+            
+            <section>
+                <h4 class="font-bold text-brandDark uppercase tracking-wider mb-2 text-xs">2. Use of Information</h4>
+                <p>Satyam Ayurvedics uses your data to provide and improve our services, process transactions, and send periodic wellness insights. We do not sell or lease your personal data to third parties for marketing purposes.</p>
+            </section>
+            
+            <section>
+                <h4 class="font-bold text-brandDark uppercase tracking-wider mb-2 text-xs">3. Product Disclaimer</h4>
+                <p>Our Ayurvedic extracts are natural supplements. Information provided is for educational purposes and not a substitute for professional medical advice. Always consult a practitioner before starting new herbal regimens.</p>
+            </section>
+            
+            <section>
+                <h4 class="font-bold text-brandDark uppercase tracking-wider mb-2 text-xs">4. Cookies & Analytics</h4>
+                <p>We use industry-standard cookies to analyze site traffic and enhance your browsing experience. By using our site, you consent to our use of these tools.</p>
+            </section>
+
+            <section>
+                <h4 class="font-bold text-brandDark uppercase tracking-wider mb-2 text-xs">5. Security</h4>
+                <p>We implement SSL encryption and secure socket layers to protect your data during transmission. Your trust is our highest priority.</p>
+            </section>
+        </div>
+
+        <div class="p-6 bg-white/30 text-center">
+            <button id="close-modal-btn" class="bg-terracotta text-white px-8 py-3 rounded-full font-bold hover:shadow-lg transition-all">I Understand</button>
+        </div>
+    </div>
+</div>
+<!-- script for privacy policy -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('privacy-modal');
+    const trigger = document.getElementById('privacy-trigger');
+    const closeX = document.getElementById('close-modal');
+    const closeBtn = document.getElementById('close-modal-btn');
+    const overlay = document.getElementById('modal-overlay');
+
+    // Safety Check: Ensure the trigger and modal exist before adding listeners
+    if (trigger && modal) {
+        const openModal = () => {
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        };
+
+        const closeModal = () => {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = '';
+        };
+
+        trigger.addEventListener('click', (e) => {
+            e.preventDefault(); // Prevents jump if it was an <a> tag
+            openModal();
+        });
+
+        // Use array for multiple close elements
+        [closeX, closeBtn, overlay].forEach(el => {
+            if (el) el.addEventListener('click', closeModal);
+        });
+
+        // Close on 'Escape' key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+                closeModal();
+            }
+        });
+        
+        console.log("Privacy Modal Initialized");
+    } else {
+        console.error("Privacy trigger or modal not found in DOM");
+    }
+});
+</script>
+<!-- script ended -->
+<!-- license -->
+<div id="license-modal" class="fixed inset-0 z-[100] hidden items-center justify-center px-6">
+    <div class="absolute inset-0 bg-brandDark/90 backdrop-blur-md" id="license-overlay"></div>
+    
+    <div class="relative bg-sand w-full max-w-2xl max-h-[80vh] rounded-[40px] shadow-2xl overflow-hidden flex flex-col">
+        <div class="p-8 border-b border-terracotta/10 flex justify-between items-center bg-white/50">
+            <div>
+                <h3 class="font-heading font-bold text-2xl text-brandDark">Compliance & Quality</h3>
+                <p class="text-[10px] text-terracotta uppercase tracking-widest font-bold">Verified Govt. Documentation</p>
+            </div>
+            <button id="close-license" class="text-terracotta hover:rotate-90 transition-transform duration-300">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+        
+        <div class="p-8 overflow-y-auto text-brandDark/80 space-y-6">
+            <div class="space-y-4">
+                <div class="flex justify-between items-center p-4 rounded-2xl bg-white/40 border border-terracotta/5">
+                    <div>
+                        <h4 class="font-bold text-brandDark text-sm">AYUSH Manufacturing License</h4>
+                        <p class="text-[10px] opacity-60 italic">Govt. of Uttarakhand (Dept. of Ayurveda)</p>
+                    </div>
+                    <a href="path-to-your-license.png" target="_blank" class="bg-terracotta/10 text-terracotta px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-wider hover:bg-terracotta hover:text-white transition-all flex items-center gap-2">
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-width="2"/><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke-width="2"/></svg>
+                        View PNG
+                    </a>
+                </div>
+
+                <div class="flex justify-between items-center p-4 rounded-2xl bg-white/40 border border-terracotta/5">
+                    <div>
+                        <h4 class="font-bold text-brandDark text-sm">FSSAI Central License</h4>
+                        <p class="text-[10px] opacity-60 italic">Food Safety and Standards Authority of India</p>
+                    </div>
+                    <a href="path-to-your-fssai.png" target="_blank" class="bg-terracotta/10 text-terracotta px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-wider hover:bg-terracotta hover:text-white transition-all flex items-center gap-2">
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-width="2"/><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke-width="2"/></svg>
+                        View PNG
+                    </a>
+                </div>
+
+                <div class="flex justify-between items-center p-4 rounded-2xl bg-white/40 border border-terracotta/5">
+                    <div>
+                        <h4 class="font-bold text-brandDark text-sm">GMP Compliance Certificate</h4>
+                        <p class="text-[10px] opacity-60 italic">Good Manufacturing Practices Certification</p>
+                    </div>
+                    <a href="path-to-your-gmp.png" target="_blank" class="bg-terracotta/10 text-terracotta px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-wider hover:bg-terracotta hover:text-white transition-all flex items-center gap-2">
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-width="2"/><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke-width="2"/></svg>
+                        View PNG
+                    </a>
+                </div>
+            </div>
+
+            <div class="p-6 bg-terracotta/5 rounded-3xl border border-terracotta/10">
+                <h5 class="text-xs font-bold text-brandDark uppercase mb-2">Legal Disclaimer</h5>
+                <p class="text-[11px] leading-relaxed opacity-70">
+                    All licenses displayed are active for the current fiscal year 2026. Satyam Ayurvedics operates under strict adherence to the Drugs and Cosmetics Act, 1940. Our facility undergoes quarterly audits by third-party quality controllers to maintain these certifications.
+                </p>
+            </div>
+        </div>
+
+        <div class="p-6 bg-white/30 text-center">
+            <button id="close-license-btn" class="bg-brandDark text-sand px-8 py-3 rounded-full font-bold hover:bg-terracotta transition-all">Back to Site</button>
+        </div>
+    </div>
+</div>
+<!-- lisense ended! -->
+<!-- lisense js-->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Selectors for the License Modal
+    const licenseModal = document.getElementById('license-modal');
+    const licenseTrigger = document.getElementById('license-trigger');
+    const licenseOverlay = document.getElementById('license-overlay');
+    const closeLicenseX = document.getElementById('close-license');
+    const closeLicenseBtn = document.getElementById('close-license-btn');
+
+    // 2. Shared Toggle Function
+    // This allows us to reuse the logic for opening and closing smoothly
+    const toggleModal = (modal, action) => {
+        if (!modal) return; // Exit if modal doesn't exist
+
+        if (action === 'open') {
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden'; // Lock background scroll
+        } else {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = ''; // Unlock scroll
+        }
+    };
+
+    // 3. Event Listeners for Licenses
+    if (licenseTrigger) {
+        licenseTrigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            toggleModal(licenseModal, 'open');
+        });
+    }
+
+    // Group the close actions together
+    [licenseOverlay, closeLicenseX, closeLicenseBtn].forEach(element => {
+        if (element) {
+            element.addEventListener('click', () => toggleModal(licenseModal, 'close'));
+        }
+    });
+
+    // 4. Global "Escape" Key Listener
+    // Closes whichever modal is currently open
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            const openModals = document.querySelectorAll('[id$="-modal"]:not(.hidden)');
+            openModals.forEach(m => toggleModal(m, 'close'));
+        }
+    });
+
+    console.log("Compliance Modals Initialized Successfully.");
+});
+</script>
+</html>

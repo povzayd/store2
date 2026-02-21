@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link rel="icon" href="./logo.png" type="image/x-icon">
+<title>Contact Us - Satyam Ayurvedics</title>
+<!-- Montserrat Font -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&amp;family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sand: '#E2D1B3',
+            terracotta: '#B36A5E',
+            sage: '#8C9A7E',
+            earth: '#5D4037',
+            custom: '#ed4426',
+          },
+          fontFamily: {
+            sans: ['Montserrat', 'Manrope', 'sans-serif'],
+          },
+          borderRadius: {
+            'custom': '12px',
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-animations">
+    /* Fluid animations for input focus */
+    .earth-input {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border-width: 2px;
+    }
+    .earth-input:focus {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 15px -3px rgba(179, 106, 94, 0.1);
+      border-color: #B36A5E;
+      outline: none;
+    }
+    .btn-hover {
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+    .btn-hover:hover {
+      transform: scale(1.02);
+      background-color: #9e5a4f;
+    }
+  </style>
+<style data-purpose="layout-spacing">
+    .section-padding {
+      padding: 5rem 1.25rem;
+    }
+  </style>
+</head>
+<body class="bg-sand text-earth font-sans antialiased min-h-screen">
+<!-- BEGIN: Navigation -->
+<!-- BEGIN: Navigation -->
+<nav class="fixed top-0 w-full z-50 glass border-b border-terracotta/10">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+        <div class="flex items-center gap-3">
+            <a href="./index.html">
+                <img src="logo.png" alt="Logo" class="h-12 w-auto object-contain hover:scale-110 transition-transform duration-300"/>
+            </a>
+        </div>
+
+        <div class="hidden md:flex items-center space-x-10">
+            <a href="./gallery.html" class="hover:text-terracotta transition-colors font-medium">Gallery</a>
+            <a href="./journey.html" class="hover:text-terracotta transition-colors font-medium">Our Journey</a>
+            <a href="./about-us.html" class="hover:text-terracotta transition-colors font-medium">About Us</a>
+            <a href="./contact.html" class="bg-terracotta text-white px-6 py-2.5 rounded-full font-semibold hover:shadow-lg transition-all">Contact Us</a>
+        </div>
+
+        <button id="menu-btn" class="md:hidden text-terracotta p-2">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+    </div>
+</nav>
+
+<div id="mobile-menu" class="fixed inset-0 z-[60] bg-brandDark flex flex-col items-center justify-center space-y-8 md:hidden">
+    <button id="close-btn" class="absolute top-6 right-6 text-sand p-2">
+        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+    </button>
+    
+    <a href="./gallery.html" class="mobile-link text-3xl text-sand font-heading">Gallery</a>
+    <a href="./journey.html" class="mobile-link text-3xl text-sand font-heading">Our Journey</a>
+    <a href="./about-us.html" class="mobile-link text-3xl text-sand font-heading">About Us</a>
+    <a href="./contact.html" class="mobile-link text-3xl text-terracotta font-heading font-bold">Contact Us</a>
+</div>
+<!-- END: Navigation -->
+<!-- BEGIN: HeroSection -->
+<section class="section-padding text-center" data-purpose="hero-content">
+<div class="max-w-3xl mx-auto">
+<h1 class="text-4xl md:text-5xl font-bold mb-4 text-earth">Get in Touch</h1>
+<p class="text-lg opacity-80 max-w-xl mx-auto">Have questions about our Ayurvedic formulations? Reach out to our herbal experts and we'll guide you on your wellness journey.</p>
+</div>
+</section>
+<!-- END: HeroSection -->
+<!-- BEGIN: ContactFormSection -->
+<section class="pb-20 px-5" data-purpose="contact-form-container">
+<div class="max-w-4xl mx-auto bg-white/40 backdrop-blur-sm p-8 md:p-12 rounded-custom shadow-sm border border-white/50">
+<form action="#" class="grid grid-cols-1 md:grid-cols-2 gap-8" method="POST">
+<!-- Name Input -->
+<div class="flex flex-col gap-2">
+<label class="font-semibold text-sm uppercase tracking-wider text-sage" for="full_name">Full Name</label>
+<input class="earth-input bg-white/80 border-sage/20 p-4 rounded-custom text-earth placeholder-sage/50" id="full_name" name="name" placeholder="John Doe" required="" type="text"/>
+</div>
+<!-- Email Input -->
+<div class="flex flex-col gap-2">
+<label class="font-semibold text-sm uppercase tracking-wider text-sage" for="email_address">Email Address</label>
+<input class="earth-input bg-white/80 border-sage/20 p-4 rounded-custom text-earth placeholder-sage/50" id="email_address" name="email" placeholder="john@example.com" required="" type="email"/>
+</div>
+<!-- Subject Input -->
+<div class="flex flex-col gap-2 md:col-span-2">
+<label class="font-semibold text-sm uppercase tracking-wider text-sage" for="subject">Subject</label>
+<input class="earth-input bg-white/80 border-sage/20 p-4 rounded-custom text-earth placeholder-sage/50" id="subject" name="subject" placeholder="Inquiry about Herbal Supplements" type="text"/>
+</div>
+<!-- Message Input -->
+<div class="flex flex-col gap-2 md:col-span-2">
+<label class="font-semibold text-sm uppercase tracking-wider text-sage" for="message">Your Message</label>
+<textarea class="earth-input bg-white/80 border-sage/20 p-4 rounded-custom text-earth placeholder-sage/50 resize-none" id="message" name="message" placeholder="Tell us how we can help..." required="" rows="5"></textarea>
+</div>
+<!-- Submit Button -->
+<div class="md:col-span-2 text-center pt-4">
+<button class="btn-hover bg-terracotta text-white font-bold py-4 px-12 rounded-full shadow-lg text-lg uppercase tracking-widest" type="submit">
+            Send Message
+          </button>
+</div>
+</form>
+</div>
+</section>
+<!-- END: ContactFormSection -->
+<!-- BEGIN: VisitFactorySection -->
+<section class="section-padding bg-earth/5" data-purpose="factory-visit">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col lg:flex-row items-center gap-12">
+<!-- Factory Info -->
+<div class="w-full lg:w-1/2 space-y-6">
+<h2 class="text-3xl font-bold text-earth">Visit Our Factory</h2>
+<p class="text-lg leading-relaxed opacity-90">
+            Witness the traditional art of Ayurveda combined with modern manufacturing standards. Our facility is located in the heart of Kerala, where we process fresh herbs into potent remedies.
+          </p>
+<div class="space-y-4">
+<div class="flex items-start gap-4">
+<div class="p-3 bg-terracotta/10 rounded-full">
+<svg class="h-6 w-6 text-terracotta" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<div>
+<h4 class="font-bold">Location</h4>
+<p class="opacity-80">123 Herbal Valley, Satyam Industrial Estate, Kerala, IN 682001</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="p-3 bg-terracotta/10 rounded-full">
+<svg class="h-6 w-6 text-terracotta" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<div>
+<h4 class="font-bold">Factory Hours</h4>
+<p class="opacity-80">Mon - Fri: 9:00 AM - 6:00 PM<br/>Saturday: 9:00 AM - 1:00 PM</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Map Placeholder -->
+<div class="w-full lg:w-1/2 h-[400px] bg-sage/20 rounded-custom overflow-hidden relative border-4 border-white shadow-xl" data-purpose="map-placeholder">
+<div class="absolute inset-0 flex items-center justify-center flex-col text-sage">
+<svg class="h-16 w-16 mb-4 opacity-40" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
+</svg>
+<p class="font-semibold uppercase tracking-widest text-sm">[ Interactive Map Placeholder ]</p>
+<p class="text-xs mt-2 italic">Satyam Ayurvedics Manufacturing Unit</p>
+</div>
+<!-- Decorative Map Overlay -->
+<div class="absolute bottom-4 right-4 bg-white px-4 py-2 rounded-lg text-xs font-bold shadow-md text-terracotta">
+            PIN: 9.9312° N, 76.2673° E
+          </div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: VisitFactorySection -->
+<!-- BEGIN: Footer -->
+<footer id="contact" class="bg-brandDark pt-20 pb-10 text-sand overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+            
+            <div class="footer-reveal space-y-6">
+                <a href="./index.html" class="inline-block">
+                    <img src="logo.png" alt="Satyam Logo" class="h-16 w-auto brightness-0 invert opacity-80 hover:opacity-100 transition-opacity"/>
+                </a>
+                <p class="text-sm leading-relaxed opacity-60">
+                    Bridging the sacred traditions of Ayurveda with the precision of modern science. Sourced from the Himalayas, perfected in our labs.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#" class="p-2 rounded-full border border-sand/10 hover:border-terracotta hover:text-terracotta transition-all">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.947.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    </a>
+                    <a href="#" class="p-2 rounded-full border border-sand/10 hover:border-terracotta hover:text-terracotta transition-all">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-reveal space-y-6">
+                <h4 class="font-heading font-bold text-sm uppercase tracking-widest text-terracotta">Navigation</h4>
+                <ul class="space-y-4 text-sm opacity-60">
+                    <li><a href="#process" class="hover:text-sand hover:opacity-100 transition-all">Our Process</a></li>
+                    <li><a href="#ingredients" class="hover:text-sand hover:opacity-100 transition-all">Key Ingredients</a></li>
+                    <li><a href="#gallery" class="hover:text-sand hover:opacity-100 transition-all">Visual Gallery</a></li>
+                    <li><a href="#" class="hover:text-sand hover:opacity-100 transition-all">Quality Reports</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-reveal space-y-6">
+                <h4 class="font-heading font-bold text-sm uppercase tracking-widest text-terracotta">Get in Touch</h4>
+                <ul class="space-y-4 text-sm opacity-60">
+                    <li class="flex items-center gap-3">
+                        <svg class="w-4 h-4 text-terracotta" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-width="2"/></svg>
+                        hello@satyam.com
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <svg class="w-4 h-4 text-terracotta" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke-width="2"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke-width="2"/></svg>
+                        Rishikesh, Uttarakhand, India
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer-reveal space-y-6">
+                <h4 class="font-heading font-bold text-sm uppercase tracking-widest text-terracotta">Newsletter</h4>
+                <p class="text-xs opacity-60 italic">Receive insights on Ayurvedic living and new extract releases.</p>
+                <form class="relative">
+                    <input type="email" placeholder="Email Address" class="w-full bg-white/5 border border-white/10 rounded-full py-3 px-6 text-sm focus:outline-none focus:border-terracotta transition-colors text-sand"/>
+                    <button type="submit" class="absolute right-2 top-2 bg-terracotta p-1.5 rounded-full hover:scale-110 transition-transform">
+                        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] uppercase tracking-widest opacity-40">
+            <p>© 2026 Satyam Ayurvedics. All rights reserved.</p>
+            <div class="flex gap-6">
+                <a href="#" class="hover:text-sand transition-colors">Privacy Policy</a>
+                <a href="#" class="hover:text-sand transition-colors">Terms of Service</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    /* Footer Scroll Animation Logic */
+    const footerObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Trigger reveal for each child column with a delay
+                const columns = entry.target.querySelectorAll('.footer-reveal');
+                columns.forEach((col, index) => {
+                    setTimeout(() => {
+                        col.style.opacity = '1';
+                        col.style.transform = 'translateY(0)';
+                    }, index * 150); // 150ms stagger
+                });
+            }
+        });
+    }, { threshold: 0.1 });
+
+    const footer = document.querySelector('footer');
+    // Initial state for columns
+    document.querySelectorAll('.footer-reveal').forEach(col => {
+        col.style.opacity = '0';
+        col.style.transform = 'translateY(20px)';
+        col.style.transition = 'all 0.8s cubic-bezier(0.22, 1, 0.36, 1)';
+    });
+    footerObserver.observe(footer);
+</script>
+<script>
+    const menuBtn = document.getElementById('menu-btn');
+    const closeBtn = document.getElementById('close-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    function toggleMenu() {
+        mobileMenu.classList.toggle('active');
+        document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    }
+
+    menuBtn.addEventListener('click', toggleMenu);
+    closeBtn.addEventListener('click', toggleMenu);
+    mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
+</script>
+<!-- END: Footer -->
+</body></html>
